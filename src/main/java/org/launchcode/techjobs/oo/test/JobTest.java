@@ -1,11 +1,13 @@
 package org.launchcode.techjobs.oo.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.launchcode.techjobs.oo.*;
 
 import static org.junit.Assert.*;
+
 
 /**
  * Created by LaunchCode
@@ -40,6 +42,27 @@ public void testSettingJobId(){
     assertFalse(jobTest1.equals(jobTest2));
 }
 
+@Test
+    public void testToStringStartsAndEndsWithNewLine(){
+    Job jobTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    assertEquals('\n', jobTest.toString().charAt(0));
+    assertEquals('\n', jobTest.toString().charAt(jobTest.toString().length()-1));
+}
+@Test
+    public void testToStringContainsCorrectLabelsAndData(){
+    Job jobTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    String jobReturnString = jobTest.toString();
+    assertTrue(jobReturnString.contains("ID: "+jobTest.getId()));
+    assertTrue(jobReturnString.contains("Name: "+jobTest.getName()));
+    assertTrue(jobReturnString.contains("Employer: "+jobTest.getEmployer()));
+    assertTrue(jobReturnString.contains("Location: "+jobTest.getLocation()));
+    assertTrue(jobReturnString.contains("Position Type: "+jobTest.getPositionType()));
+    assertTrue(jobReturnString.contains("Core Competency: "+jobTest.getCoreCompetency()));
 
+}
+@Test
+    public void testToStringHandlesEmptyField(){
+    Job jobTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
+}
 }
