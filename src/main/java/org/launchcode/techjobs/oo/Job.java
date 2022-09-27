@@ -35,7 +35,7 @@ public class Job {
         return "\n"
                 +"ID: "+this.getId()+"\n"
                 +"Name: "+this.getName()+"\n"
-                +"Employer: "+this.getEmployer()+"\n"
+                +"Employer: "+this.getEmployer().toString()+"\n"
                 +"Location: "+this.getLocation()+"\n"
                 +"Position Type: "+this.getPositionType()+"\n"
                 +"Core Competency: "+this.getCoreCompetency()

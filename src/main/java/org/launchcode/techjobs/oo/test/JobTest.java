@@ -51,18 +51,30 @@ public void testSettingJobId(){
 @Test
     public void testToStringContainsCorrectLabelsAndData(){
     Job jobTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-    String jobReturnString = jobTest.toString();
-    assertTrue(jobReturnString.contains("ID: "+jobTest.getId()));
-    assertTrue(jobReturnString.contains("Name: "+jobTest.getName()));
-    assertTrue(jobReturnString.contains("Employer: "+jobTest.getEmployer()));
-    assertTrue(jobReturnString.contains("Location: "+jobTest.getLocation()));
-    assertTrue(jobReturnString.contains("Position Type: "+jobTest.getPositionType()));
-    assertTrue(jobReturnString.contains("Core Competency: "+jobTest.getCoreCompetency()));
+    assertEquals("\nID: " + jobTest.getId() +"\n"+
+            "Name: Product tester\n" +
+            "Employer: ACME\n" +
+            "Location: Desert\n" +
+            "Position Type: Quality control\n" +
+            "Core Competency: Persistence\n",jobTest.toString());
 
 }
 @Test
-    public void testToStringHandlesEmptyField(){
-    Job jobTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    public void testToStringHandlesEmptyField() {
+    Job jobTest = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    Job jobTest1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType(""), new CoreCompetency("Persistence"));
 
-}
+    assertEquals("\nID: " + jobTest.getId() +"\n"+
+                    "Name: Product tester\n" +
+                    "Employer: Data not available\n" +
+                    "Location: Desert\n" +
+                    "Position Type: Quality control\n" +
+                    "Core Competency: Persistence\n", jobTest.toString());
+    assertEquals("\nID: " + jobTest1.getId() +"\n" +
+            "Name: Product tester\n" +
+            "Employer: ACME\n" +
+            "Location: Desert\n" +
+            "Position Type: Data not available\n" +
+            "Core Competency: Persistence\n", jobTest1.toString());
+    }
 }
